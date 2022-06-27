@@ -12,7 +12,6 @@ namespace Cadastro
     class Banco
     {
 
-        DataTable dt;
         public static SqlConnection ConectaBanco()
         {
             SqlConnection conexao = new SqlConnection(" Data Source = DESKTOP-KB48KMI\\SQLEXPRESS;Initial Catalog = Crud; Integrated Security = True");
@@ -58,12 +57,54 @@ namespace Cadastro
         }
         public static DataTable ConsultaId(string id)
         {
-            DataTable dt = new DataTable();
-            var cmd = ConectaBanco().CreateCommand();
-            cmd.CommandText = $"SELECT * FROM CLIENTES WHERE ID = {id}";
-            SqlDataAdapter adapter = new SqlDataAdapter(cmd.CommandText, ConectaBanco());
-            adapter.Fill(dt);
-            return dt;
+            try
+            {
+                DataTable dt = new DataTable();
+                var cmd = ConectaBanco().CreateCommand();
+                cmd.CommandText = $"SELECT * FROM CLIENTES WHERE ID = {id}";
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd.CommandText, ConectaBanco());
+                adapter.Fill(dt);
+                return dt;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return null;
+        }
+        public static void Editar(Cliente cli)
+        {
+            try
+            {
+                var cmd = ConectaBanco().CreateCommand();
+                cmd.CommandText = $"UPDATE CLIENTES SET NOME = @Nome, NUMERO = @Numero WHERE ID = {cli.Id}";
+                cmd.Parameters.AddWithValue("@Nome", cli.Nome);
+                cmd.Parameters.AddWithValue("@Numero", cli.Numero);
+                cmd.ExecuteNonQuery();
+                ConectaBanco().Close();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        public static void Delete(Cliente cli)
+        {
+            try
+            {
+                var cmd = ConectaBanco().CreateCommand();
+                cmd.CommandText = $"DELETE FROM CLIENTES WHERE ID = {cli.Id}";
+                cmd.ExecuteNonQuery();
+                ConectaBanco().Close();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
         }
     }
 }

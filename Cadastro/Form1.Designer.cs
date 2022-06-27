@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lb_Id = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -40,7 +41,13 @@
             this.btn_Exibir = new System.Windows.Forms.Button();
             this.btn_Excluir = new System.Windows.Forms.Button();
             this.dgv_Dados = new System.Windows.Forms.DataGridView();
+            this.crudDataSet = new Cadastro.CrudDataSet();
+            this.crudDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.crudDataSetBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Dados)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.crudDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.crudDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.crudDataSetBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // lb_Id
@@ -83,6 +90,7 @@
             this.txt_Id.Name = "txt_Id";
             this.txt_Id.Size = new System.Drawing.Size(100, 20);
             this.txt_Id.TabIndex = 4;
+            this.txt_Id.Visible = false;
             // 
             // txt_Nome
             // 
@@ -109,6 +117,7 @@
             this.btn_Editar.TabIndex = 7;
             this.btn_Editar.Text = "Editar";
             this.btn_Editar.UseVisualStyleBackColor = true;
+            this.btn_Editar.Click += new System.EventHandler(this.btn_Editar_Click);
             // 
             // btn_Conslta
             // 
@@ -138,14 +147,36 @@
             this.btn_Excluir.TabIndex = 10;
             this.btn_Excluir.Text = "Excluir";
             this.btn_Excluir.UseVisualStyleBackColor = true;
+            this.btn_Excluir.Click += new System.EventHandler(this.btn_Excluir_Click);
             // 
             // dgv_Dados
             // 
+            this.dgv_Dados.AllowUserToAddRows = false;
+            this.dgv_Dados.AllowUserToDeleteRows = false;
+            this.dgv_Dados.AllowUserToOrderColumns = true;
             this.dgv_Dados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_Dados.Location = new System.Drawing.Point(34, 177);
             this.dgv_Dados.Name = "dgv_Dados";
-            this.dgv_Dados.Size = new System.Drawing.Size(399, 150);
+            this.dgv_Dados.ReadOnly = true;
+            this.dgv_Dados.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.dgv_Dados.Size = new System.Drawing.Size(328, 150);
             this.dgv_Dados.TabIndex = 11;
+            this.dgv_Dados.SelectionChanged += new System.EventHandler(this.dgv_Dados_SelectionChanged);
+            // 
+            // crudDataSet
+            // 
+            this.crudDataSet.DataSetName = "CrudDataSet";
+            this.crudDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // crudDataSetBindingSource
+            // 
+            this.crudDataSetBindingSource.DataSource = this.crudDataSet;
+            this.crudDataSetBindingSource.Position = 0;
+            // 
+            // crudDataSetBindingSource1
+            // 
+            this.crudDataSetBindingSource1.DataSource = this.crudDataSet;
+            this.crudDataSetBindingSource1.Position = 0;
             // 
             // Form1
             // 
@@ -166,7 +197,11 @@
             this.Controls.Add(this.lb_Id);
             this.Name = "Form1";
             this.Text = "Cadastro";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Dados)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.crudDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.crudDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.crudDataSetBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -186,6 +221,9 @@
         private System.Windows.Forms.Button btn_Exibir;
         private System.Windows.Forms.Button btn_Excluir;
         private System.Windows.Forms.DataGridView dgv_Dados;
+        private System.Windows.Forms.BindingSource crudDataSetBindingSource1;
+        private CrudDataSet crudDataSet;
+        private System.Windows.Forms.BindingSource crudDataSetBindingSource;
     }
 }
 
